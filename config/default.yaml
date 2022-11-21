@@ -1,0 +1,55 @@
+# parameters for navigation
+
+common:
+  max_episode_steps: 500
+  max_global_planner_hz: 10
+
+  ## Simulator params ##
+  known_static_map: "maps/square/map.yaml"
+  unknown_static_obs: "maps/star/map.yaml"
+  # NOTE: known_static_map and unknown_static_obs must be the same size and resolution
+  control_interval_time: 0.1 # [s]
+  robot_radius: 1.0 # [m]
+  start_pose_type: "specified" # "candidates" or "specified"
+  start_pose:
+    x: 0.0
+    y: 0.0
+    yaw: 0.0
+  goal_pose_type: "specified" # "candidates" or "specified" or "random"
+  goal_pose:
+    x: 10.0
+    y: -10.0
+    yaw: 0.0
+
+start_pose_candidates:
+
+goal_pose_candidates:
+
+start_pose_constraints:
+
+goal_pose_constraints:
+
+moving_obstacles:
+  type: "all" # "candidates" or "all"
+  num: 2
+  candidates:
+    - id: 0
+      shape: "circle"
+      size: [1.0, 0]
+      motion_model: "point_mass_model"
+      x: 0.0
+      y: -7.0
+      yaw: 0.0
+      vx: 1.0
+      vy: 0.0
+      vyaw: 1.0
+    - id: 1
+      shape: "circle"
+      size: [1.0, 0]
+      motion_model: "point_mass_model"
+      x: 7.0
+      y: 0.0
+      yaw: 0.0
+      vx: 1.0
+      vy: 0.0
+      vyaw: 1.0

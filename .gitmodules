@@ -1,0 +1,3 @@
+[submodule "navigation_simulator_2d"]
+	path = navigation_simulator_2d
+	url = git@github.com:kohonda/navigation_simulator_2d.git
