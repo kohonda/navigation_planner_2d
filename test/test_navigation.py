@@ -21,8 +21,8 @@ static_map = simulator.reset(params)
 global_planner = DijkstraPlanner(params)
 
 # Local planner
-local_planner = DWAPlanner(params)
-# local_planner = RandomizedMPCPlanner(params)
+# local_planner = DWAPlanner(params)
+local_planner = RandomizedMPCPlanner(params)
 
 # Set goal randomly
 goal_state = params.goal_state
@@ -45,15 +45,14 @@ for _ in range(max_frame):
     
     # Calculate local path and control command
     local_planner.set_costmap(robot_obs.static_map_with_scan)
-    # local_planner.set_costmap(robot_obs.scan_points)
     local_planner_output = local_planner.compute_velocity_command(robot_obs, goal_state, reference_path_xy)
     
     # Update simulator
     obstacle_map, robot_traj = simulator.step(local_planner_output.control_command)
     
-    # Get inflated map
-    inflated_map = global_planner.get_costmap()
-    # inflated_map = local_planner.get_costmap()
+    # Inflated map using planning
+    # inflated_map = global_planner.get_costmap().get_map_as_np('occupancy')
+    # inflated_map = local_planner.get_costmap().get_map_as_np('occupancy')
     
     # Rendering
     image_arr = visualizer.render(
@@ -62,12 +61,13 @@ for _ in range(max_frame):
         robot_observation=robot_obs,
         robot_traj=robot_traj,
         goal_state=goal_state, 
-        inflated_map=inflated_map,
+        # inflation_layer=inflated_map,
         robot_radius=params.robot_radius,
         global_path=reference_path_ij,
         local_path_list=local_planner_output.predict_path_list,
         local_path_best_index=local_planner_output.best_index,
-        sub_goal_index=local_planner_output.sub_goal_index
+        sub_goal_index=local_planner_output.sub_goal_index,
+        visualize_local_path=True,
         )
     
     frames.append([plt.imshow(image_arr)])

@@ -1,6 +1,17 @@
-# Randomized MPC py
+# navigation_planner_2d
 
-Randomized Model Predictive Control with python
+Simple robot navigation planner
+
+## Current implementation methods
+
+### Global Planner
+
+- Dijkstra
+
+### Local Planner
+
+- DWA
+- Randomized MPC
 
 ## How to install 
 

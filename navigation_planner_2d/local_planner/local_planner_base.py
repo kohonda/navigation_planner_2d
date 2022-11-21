@@ -36,3 +36,8 @@ class LocalPlannerBase(ABC):
         """Set cost map for planning"""
         pass
     
+    @abstractmethod
+    def get_costmap(self) -> MapHandler:
+        """Get cost map for planning"""
+        pass
+    

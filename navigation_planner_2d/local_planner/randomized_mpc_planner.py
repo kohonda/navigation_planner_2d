@@ -176,6 +176,9 @@ class RandomizedMPCPlanner(LocalPlannerBase):
     def set_costmap(self, cost_map: MapHandler) -> None:
         self._local_cost_map = cost_map.get_inflated_map(inflation_radius=self._inflation_radius)
         
+    def get_costmap(self) -> MapHandler:
+        return self._local_cost_map
+        
     def is_goal_reached(self, robot_obs: RobotObservation, goal_state: AgentState) -> bool:
         is_goal = False
         dist_to_goal = np.hypot(robot_obs.state.pos[0]-goal_state.pos[0], robot_obs.state.pos[1]-goal_state.pos[1])

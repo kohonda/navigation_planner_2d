@@ -14,6 +14,11 @@ class GlobalPlannerBase(ABC):
         pass
     
     @abstractmethod
+    def get_costmap(self) -> MapHandler:
+        """Get cost map for planning"""
+        pass
+    
+    @abstractmethod
     def make_plan(self, start_state: np.ndarray, goal_state: np.ndarray)->Tuple:
         """Make plan from start state to goal state.
            Returns: 
