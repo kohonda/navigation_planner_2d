@@ -3,7 +3,7 @@ from matplotlib import pyplot as plt
 from navigation_planner_2d import global_planner
 from navigation_simulator_2d.simulator import Simulator
 from navigation_simulator_2d.utils import visualizer, ParameterHandler
-from navigation_planner_2d.global_planner import DijkstraPlanner
+from navigation_planner_2d.global_planner import DijkstraPlanner, RRTPlanner
 from navigation_planner_2d.local_planner import DWAPlanner, RandomizedMPCPlanner
 
 # Parameters
@@ -19,10 +19,11 @@ static_map = simulator.reset(params)
 
 # Global planner
 global_planner = DijkstraPlanner(params)
+# global_planner = RRTPlanner(params)
 
 # Local planner
-# local_planner = DWAPlanner(params)
-local_planner = RandomizedMPCPlanner(params)
+local_planner = DWAPlanner(params)
+# local_planner = RandomizedMPCPlanner(params)
 
 # Set goal randomly
 goal_state = params.goal_state

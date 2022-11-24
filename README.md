@@ -7,6 +7,7 @@ Simple robot navigation planner
 ### Global Planner
 
 - Dijkstra
+- RRT
 
 ### Local Planner
 
