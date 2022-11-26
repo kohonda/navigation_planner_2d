@@ -32,7 +32,7 @@ class DWAPlanner(LocalPlannerBase):
     PATH_ANGLE_BIAS : float = 0.0 # [1/rad] : 軌道終端からグローバルパスへの方向に対する重み
     GOAL_DISTANCE_BIAS : float = 0.0 # [1/m] : 軌道終端からゴールまでへの距離に対する重み
     GOAL_ANGLE_BIAS : float = 0.0 # [1/rad] : 軌道終端からゴールへの方向に対する重み
-    SUB_GOAL_DISTANCE_BIAS: float = 0.1 # [1/m] : 軌道終端からサブゴールまでへの距離に対する重み
+    SUB_GOAL_DISTANCE_BIAS: float = 1.0 # [1/m] : 軌道終端からサブゴールまでへの距離に対する重み
     SUB_GOAL_ANGLE_BIAS : float = 0.0001 # [1/rad] : 軌道終端からサブゴールへの方向に対する重み = 停止時の不要な回転を抑制
     COLLISION_SCALE : float = 1000.0 # [-] : 障害物の衝突に対する重み
     # Goal reach params
@@ -139,7 +139,7 @@ class DWAPlanner(LocalPlannerBase):
                 accumulate_dist += np.linalg.norm(reference_path[next_index,:]-reference_path[i,:])
                 sub_goal_ahead = current_vx * self.SUB_GOAL_AHEAD + self.SUB_GOAL_AHEAD_OFFSET
                 if accumulate_dist > sub_goal_ahead:
-                    sub_goal_index = i
+                    sub_goal_index = next_index
                     break
                 else:
                     pass

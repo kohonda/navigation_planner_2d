@@ -8,6 +8,7 @@ Simple robot navigation planner
 
 - Dijkstra
 - RRT
+- RRT*
 
 ### Local Planner
 
