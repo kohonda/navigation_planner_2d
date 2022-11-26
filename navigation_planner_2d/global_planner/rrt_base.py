@@ -17,6 +17,8 @@ class Tree:
         self.vertices: np.ndarray = np.empty((0, dim))
         self.vertices_count: int = 0
         self.edges: dict[int, int] = {} # {vertex_id: parent_id}
+        self.costs: dict[int, float] = {0:0} # {vertex_id: cost}
+        
     def plot(self, start: np.ndarray, goal: np.ndarray):
         plt.plot(self.vertices[:,0], self.vertices[:,1], 'o')
         for v_id, p_id in self.edges.items():
@@ -36,7 +38,7 @@ class RRTBase(GlobalPlannerBase):
         # TODO change from params
         self._inflation_radius = params.robot_radius
         self._max_iter = 10000
-        self._max_dist = 1.0 # max distance to sample point [m]
+        self._max_dist = 0.5 # max distance to sample point [m]
         self._collision_check_sample_num = 10 # number of samples to check collision between two vertices
         self._rng = np.random.default_rng(seed=0)
         
